@@ -29,7 +29,7 @@ Usage overview
 
 //TODO
 
-oDesk API Tips/Tricks
+oDesk API Tips/Comments
 ---------------------
 
 //TODO
