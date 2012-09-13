@@ -42,8 +42,10 @@ class Application
         )
       );
     }
-
-    return json_decode($offers_data);
+    
+    $offers = json_decode($offers_data);
+    
+    return $offers;
   }
 
   static function getJobs($last = 0, $status = 'all')
@@ -105,6 +107,14 @@ class Application
     $jresponse = self::getApi()->post_request('https://www.odesk.com/api/hr/v2/jobs.json', $job_params);
 
     return json_decode($jresponse);
+  }
+  
+  static function getProvider($id)
+  {
+    $response = self::getApi()->get_request('http://www.odesk.com/api/profiles/v1/providers/'.$id.'/brief.json');
+    $data = json_decode($response);
+
+    return $data;
   }
 
 }

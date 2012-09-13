@@ -7,7 +7,10 @@
     {$offers->job__title}
   </td>
   <td>
-    $ {$offers->fixed_charge_amount_agreed}
+    {$offers->fixed_charge_amount_agreed}
+  </td>
+  <td>
+    {$offers->country}
   </td>
   <td>
     {$offers->estimated_duration}
@@ -33,7 +36,7 @@
 {else}
 {if $last == 0}
 <tr>
-  <td colspan="5">
+  <td colspan="6">
     No offers!!!
   </td>
 </tr>

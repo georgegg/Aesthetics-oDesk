@@ -8,14 +8,14 @@
 </div>
 {/if}
 <div class="page-header">
-  <h1>Post new Job <small>on oDesk</small></h1>
+  <h1>Post new Job <small>on oDesk <sup>1</sup></small></h1>
 </div>
 
 <div class="row-fluid">
   <div class="span9">
     <form class="form-horizontal" onsubmit="" method="post" action="./?action=new_job">      
       <fieldset id="sf_fieldset_none">
-        <h2>Job Options <small><sup>1</sup></small></h2>
+<!--        <h2>Job Options <small><sup>1</sup></small></h2>-->
         <div class="control-group {if $errors['title']}error{/if}">
           <label class="control-label" for="title"><sup style="color: red;"><i class="icon-asterisk"></i></sup> Title</label>          
           <div class="controls">

@@ -10,6 +10,7 @@
           <th width="150px">Applicant</th>
           <th>Job</th>
           <th width="80px">Price</th>
+          <th width="120px">Country</th>
           <th width="120px">ETA</th>
           <th width="80px">Status</th>
         </tr>

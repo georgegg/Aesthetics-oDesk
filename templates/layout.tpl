@@ -69,7 +69,7 @@
       </div>
       <hr>
       <footer>
-        <p class="pull-left">Developed by <a target="_blank" href="http://www.mediascape.gr" style="color: #B94A48;"><strong>Mediascape Ltd</strong></a> <br>¬© 2012, Harvard University.</p>
+        <p class="pull-left">Developed by <a target="_blank" href="http://www.mediascape.gr" style="color: #B94A48;"><strong>Mediascape Ltd</strong></a> <br>© 2012, Harvard University.</p>
       </footer>
     </div>
 

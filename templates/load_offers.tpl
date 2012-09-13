@@ -11,6 +11,9 @@
         $ {$offer->fixed_charge_amount_agreed}
       </td>
       <td>
+        {$offer->country}
+      </td>
+      <td>
         {$offer->estimated_duration}
       </td>
       <td>
@@ -34,7 +37,7 @@
   {/foreach}
   {if $total >= 10}
     <tr>
-      <td colspan="5">
+      <td colspan="6">
         <a id="showmore-offers" class="btn btn-primary" href="#" rel="{$last+$total}{if $job}&job={$job}{/if}"><i class="icon-download"></i> Load more</a>
       </td>
     </tr>
@@ -42,7 +45,7 @@
 {else}
 {if $last == 0}
 <tr>
-  <td colspan="5">
+  <td colspan="6">
     No offers!!!
   </td>
 </tr>
