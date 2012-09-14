@@ -10,7 +10,7 @@ if ($_POST['submit']) {
   //Errors array
   $errors = array();
   
-  //Validate
+  //Validation
   if (!$_POST['title']){
     $errors['title'] = 'Title is required.';
   }
@@ -49,6 +49,9 @@ if ($_POST['submit']) {
   if ($_POST['budget'] && !is_numeric($_POST['budget'])){
     $errors['budget'] = 'Budget must be a number.';
   }
+  if ($_POST['budget'] && $_POST['budget'] < 5){
+    $errors['budget'] = 'Minimum budget is 5 US Dollars.';
+  }
   
   //If errors or not
   if ($errors) {
@@ -56,9 +59,8 @@ if ($_POST['submit']) {
     $smarty->assign('values', $_POST);
   } else {
     //POST THE JOB!!!
-    
     $job = Application::postJob($_POST);
-    
+    //if ok
     if ($job->job){
       $smarty->assign('message', array('type'=> 'success', 'body'=>'Job created successfully with ref: '. $job->job->reference));
     }

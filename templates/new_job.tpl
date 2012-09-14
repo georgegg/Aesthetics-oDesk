@@ -106,6 +106,7 @@
               <span class="add-on">$</span><input name="budget" class="span6 currency" id="budget" type="text" value="{$values.budget}">
             </div>
             {if $errors['budget']}<span class="help-inline">{$errors['budget']}</span>{/if}
+            <span class="help-block"><i class="icon-question-sign"></i> Minimum budget is 5 US Dollars.</span>
           </div>
         </div>
       </fieldset>
