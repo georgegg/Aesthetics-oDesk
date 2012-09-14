@@ -31,10 +31,12 @@ Usage overview
 
 oDesk API Tips/Comments
 ---------------------
+-- Listing objects through the API (jobs, offers, etc): Response is not always a collection of objects (array of objects). If the response has one object it should be AGAIN an
+array with ONE object. This helps a lot in template building to avoid unnecessary if clause and template duplicates (code repetition!!!).
 
 -- Listing objects through the API (jobs, offers, etc) don't provide total to implement pagination.
 It only provides total of requested <u>offset;count</u>. Thus only fragmented / partial data loading is possible.
 
 -- Online job posting accept budget of 5 usd minimum (for fixed price jobs), while through the API less budget can be accepted?!
 
-<b>continuing ... </b> 
+<b>more coming ... </b> 
