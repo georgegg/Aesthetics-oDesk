@@ -201,8 +201,6 @@ final class oDeskAPI {
             $d = print_r($data, true);
             throw new Exception('API does not return anything or request could not be finished. Response: '.(empty($t) ? '&lt;EMPTY&gt;' : $t));
         } else if ($data['info']['http_code'] != 200) {
-          var_dump($data);
-          die();
             throw new Exception('API return code - '.$data['info']['http_code'].'. Can not create '.strtoupper($type).' request.');
         } else {
             return $data['response'];
@@ -259,7 +257,7 @@ final class oDeskAPI {
      * 
      * @param   string  $url    URL to request
      * @param   string  $type   Type of request
-     * @staticη
+     * @static
      * @access  private
      * @return  array
      */

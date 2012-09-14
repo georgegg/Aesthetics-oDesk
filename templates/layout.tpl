@@ -32,6 +32,7 @@
           <a class="brand" href="./?action=index"><span>Aesthetics</span> <span style="font-size: 13px;">[oDesk App]</span></a>
           <div class="nav-collapse">
             <ul class="nav">
+              {if $is_authed}
               <li class="{if !$active || $active=='index'}active{/if}"><a href="./?action=index"><i class="icon-home"></i> Home</a></li>
 <!--              <li class="{if $active==2}active{/if}"><a href="./?action=jobs"><i class="icon-tasks"></i> Jobs</a></li>-->
               <li class="dropdown {if $active=='jobs' || $active=='new_job'}active{/if}">
@@ -44,10 +45,15 @@
               </li>
               <li class="{if $active=='offers'}active{/if}"><a href="./?action=offers"><i class="icon-user"></i> Offers</a></li>
               <li class="{if $active=='contracts'}active{/if}"><a href="./?action=contracts"><i class="icon-certificate"></i> Contracts</a></li>
+              {/if}
             </ul>
             <ul class="nav pull-right">
               <li><a href="#"><i class="icon-question-sign"></i> Help</a></li>
-              <li><a href="./?action=logout"><i class="icon-off"></i> Logout</a></li>
+              {if $is_authed}
+              <li><a href="./?action=logout"><i class="icon-signout"></i> Sign out app</a></li>
+              {else}
+              <li><a href="https://www.odesk.com/login.php?action=logout"><i class="icon-signout"></i> Sign out from oDesk</a></li>
+              {/if}
             </ul>
           </div>
         </div>
@@ -60,8 +66,7 @@
           {if $message}
           <div class="alert alert-{$message['type']}">
             <button type="button" class="close" data-dismiss="alert" style="font-size: 15px;"><i class="icon-remove"></i></button>
-            <h4>{$message['type']}<small>:</small></h4>
-            <i class="icon-info-sign"></i> {$message['body']}
+            {$message['body']}
           </div>
           {/if}
           {$content}

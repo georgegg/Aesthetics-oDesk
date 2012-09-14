@@ -6,17 +6,29 @@ require 'config/config.php';
 require('lib/smarty/Smarty.class.php');
 require 'lib/application.php';
 
+$action = isset($_REQUEST['action']) ? strtolower($_REQUEST['action']) : 'index';
+$is_authed = false;
+
 try {
   // create API's library object'
   $api = new oDeskAPI(OD_SECRET, OD_API_KEY);
 } catch (Exception $e) {
   echo '<pre>Error: ' . $e->getMessage() . '</pre>';
 }
-if (!isset($_SESSION['saved_token_id'])) {
+if ($action != 'error') {
+  if (!isset($_SESSION['odesk_api_token'])) {
     $token = $api->auth(); // auth using your login and pass to authorize app
-    $_SESSION['saved_token_id'] = $token; // save your token using prefered method
-} else {
-    $api->option('api_token', $_SESSION['saved_token_id']); // use saved token, then you app do not require...
+    $_SESSION['odesk_api_token'] = $token; // save your token using prefered method
+    $check = Application::checkUser();
+    if (!$check) {
+      header("Location: ./?action=error");
+    } else {
+      $is_authed = true;
+    }
+  } else {
+    $api->option('api_token', $_SESSION['odesk_api_token']);
+    $is_authed = true;
+  }
 }
 $base = realpath(dirname(__FILE__));
 $smarty = new Smarty();
@@ -26,11 +38,11 @@ $smarty->setCacheDir($base . '/lib/smarty/cache');
 $smarty->setConfigDir($base . '/lib/smarty/configs');
 
 $content = '';
-$action = isset($_REQUEST['action']) ? strtolower($_REQUEST['action']) : 'index';
 $script = $base . '/scripts/' . $action . '.php';
 if (file_exists($script)) {
   require $script;
 }
 $smarty->assign('active', $action);
+$smarty->assign('is_authed', $is_authed);
 $smarty->assign('content', $content);
 $smarty->display('layout.tpl');

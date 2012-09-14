@@ -123,5 +123,22 @@ class Application
 
     return $data;
   }
+  static function checkUser()
+  {
+    $response = self::getApi()->get_request('https://www.odesk.com/api/auth/v1/info.json');
+    $user = json_decode($response);
+    
+    $a_users = explode(';;', OD_USERS);
+//    var_dump($user);
+//    die($user->auth_user->uid);
+    if(!in_array($user->auth_user->uid, $a_users)){
+      return fasle;
+    }
+    
+    if($user->info->capacity->buyer != 'yes'){
+      return fasle;
+    }
+    return true;
+  }
 
 }

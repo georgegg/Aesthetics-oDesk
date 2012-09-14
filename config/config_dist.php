@@ -12,3 +12,4 @@ define('OD_SECRET', 'YOUR ODESK APP SECRET');
 define('OD_API_KEY', 'YOUR ODESK API KEY');
 define('OD_COMPANY', 'YOUR REFERENCE');
 define('OD_BASE_URL', 'https://www.odesk.com');
+define('OD_USERS_ID', 'CONCAT_STRING_OF_ALLOWED_UIDz'); //eg: example1uid;;example2uid;;example3uid
