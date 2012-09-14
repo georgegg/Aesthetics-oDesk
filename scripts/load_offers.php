@@ -8,10 +8,15 @@ $offers_data = Application::getOffers($last, $job);
 $total = $offers_data->offers->lister->total_items;
 $offers = $offers_data->offers->offer;
 
+//get country of applicant
 if (is_array($offers)){
+  $ids = '';
   foreach ($offers as $key => $offer) {
-    $profile = Application::getProvider(str_replace('https://www.odesk.com/users/', '', $offer->provider__profile_url));
-    $offers[$key]->country = $profile->profile->dev_country;
+    $ids .= str_replace('https://www.odesk.com/users/', '', $offer->provider__profile_url).';';
+  }
+  $profiles = Application::getProviders(substr($ids, 0, -1));
+  foreach ($profiles->profiles->profile as $key => $profile){
+    $offers[$key]->country = $profile->dev_country;
   }
 } else {
   if($total > 0 ) {
@@ -19,8 +24,7 @@ if (is_array($offers)){
     $offers->country = $profile->profile->dev_country;
   }
 }
-//var_dump($offers);
-//die();
+//assign values
 $smarty->assign('total', $total);
 $smarty->assign('job', $job);
 $smarty->assign('last', $last);

@@ -116,5 +116,12 @@ class Application
 
     return $data;
   }
+  static function getProviders($ids)
+  {
+    $response = self::getApi()->get_request('http://www.odesk.com/api/profiles/v1/providers/'.$ids.'/brief.json');
+    $data = json_decode($response);
+
+    return $data;
+  }
 
 }

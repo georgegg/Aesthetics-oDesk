@@ -7,7 +7,7 @@
     {$offers->job__title}
   </td>
   <td>
-    {$offers->fixed_charge_amount_agreed}
+    $ {$offers->fixed_charge_amount_agreed}
   </td>
   <td>
     {$offers->country}
