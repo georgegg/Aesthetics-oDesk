@@ -32,4 +32,9 @@ Usage overview
 oDesk API Tips/Comments
 ---------------------
 
-//TODO
+-- Listing objects through the API (jobs, offers, etc) don't provide total to implement pagination.
+It only provides total of requested <u>offset;count</u>. Thus only fragmented / partial data loading is possible.
+
+-- Online job posting accept budget of 5 usd minimum (for fixed price jobs), while through the API less budget can be accepted?!
+
+<b>continuing ... </b> 
