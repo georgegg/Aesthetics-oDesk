@@ -36,6 +36,7 @@ $smarty->setTemplateDir($base . '/templates');
 $smarty->setCompileDir($base . '/lib/smarty/templates_c');
 $smarty->setCacheDir($base . '/lib/smarty/cache');
 $smarty->setConfigDir($base . '/lib/smarty/configs');
+$smarty->setPluginsDir($base . '/plugins');
 
 $content = '';
 $script = $base . '/scripts/' . $action . '.php';

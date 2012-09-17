@@ -7,7 +7,10 @@ $jobs_data = Application::getJobs($last, $status);
 
 $total = $jobs_data->jobs->lister->total_items;
 $jobs = $jobs_data->jobs->job;
-
+//echo '<code class="span12">';
+//var_dump($jobs);
+//echo '</code>';
+//die();
 $smarty->assign('total', $total);
 $smarty->assign('jobs', $jobs);
 $smarty->assign('last', $last);

@@ -24,6 +24,10 @@ if (is_array($offers)){
     $offers->country = $profile->profile->dev_country;
   }
 }
+//echo '<code class="span12">';
+//var_dump($offers);
+//echo '</code>';
+//die();
 //assign values
 $smarty->assign('total', $total);
 $smarty->assign('job', $job);
