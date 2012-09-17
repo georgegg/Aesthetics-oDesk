@@ -49,21 +49,22 @@ var _status = '{$status}';
   $(document).ready(function(){
 
     function loadJobs(last){
-      return $.ajax({
+      $.ajax({
         type: 'GET',
         dataType: 'HTML',
-        url: 'index.php?action=load_jobs&status='+ _status + '&last='+last,
-        async: false
-      }).responseText;
+        url: 'index.php?action=load_jobs&status='+ _status + '&last='+last
+      }).done(function(responce){
+        $("a#showmore-jobs").parent('td').parent('tr').remove();
+        $('#jobslist').append(responce);
+        $("a#showmore-jobs").click(function(e){
+          e.preventDefault();
+          doLoadJobs($(this).attr('rel'));
+        })
+      });
     }
 
     function doLoadJobs(last){
-      $("a#showmore-jobs").parent('td').parent('tr').remove();
-      $('#jobslist').append(loadJobs(last));
-      $("a#showmore-jobs").click(function(e){
-        e.preventDefault();
-        doLoadJobs($(this).attr('rel'));
-      })
+      loadJobs(last);
     }
 
     $("a#showmore-jobs").click(function(e){

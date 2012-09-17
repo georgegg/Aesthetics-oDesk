@@ -13,6 +13,7 @@
           <th width="120px">Country</th>
           <th width="120px">ETA</th>
           <th width="80px">Status</th>
+          <th width="20x"></th>
         </tr>
       </thead>
       <tbody id="offerslist">
@@ -42,21 +43,23 @@ job = {$job->reference};
   $(document).ready(function(){
 
     function loadOffers(last){
-      return $.ajax({
+      $.ajax({
         type: 'GET',
         dataType: 'HTML',
         url: 'index.php?action=load_offers&last='+last,
-        async: false
-      }).responseText;
+//        async: false
+      }).done(function(responce){
+        $("a#showmore-offers").parent('td').parent('tr').remove();
+        $('#offerslist').append(responce); 
+        $("a#showmore-offers").click(function(e){
+          e.preventDefault();
+          doLoadOffers($(this).attr('rel'));
+        })
+      });
     }
 
     function doLoadOffers(last){
-      $("a#showmore-offers").parent('td').parent('tr').remove();
-      $('#offerslist').append(loadOffers(last));
-      $("a#showmore-offers").click(function(e){
-        e.preventDefault();
-        doLoadOffers($(this).attr('rel'));
-      })
+      loadOffers(last);
     }
 
     $("a#showmore-offers").click(function(e){

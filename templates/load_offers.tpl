@@ -17,7 +17,14 @@
         {$offer->estimated_duration}
       </td>
       <td>
-        {if $offer->status}
+        {calc_status 
+          candidacy_status=$offer->candidacy_status 
+          interview_status=$offer->interview_status 
+          has_buyer_signed=$offer->has_buyer_signed 
+          has_provider_signed=$offer->has_provider_signed 
+          status=$offer->status
+        }
+<!--        {if $offer->status}
           {if $offer->status == 'rejected'}
           <span class="label label-important">Rejected</span>
           {elseif $offer->status == 'open'}
@@ -31,13 +38,16 @@
           {/if}
         {else}
           <span class="label">no candidacy</span>
-        {/if}
+        {/if}-->
+      </td>
+      <td>
+        <a class="btn btn-mini btn-success" target="_blank" title="review online" href="https://www.odesk.com/applications/{$offer->reference}"><i class="icon-eye-open"></i></a>
       </td>
     </tr>
   {/foreach}
   {if $total >= 10}
     <tr>
-      <td colspan="6">
+      <td colspan="7">
         <a id="showmore-offers" class="btn btn-primary" href="#" rel="{$last+$total}{if $job}&job={$job}{/if}"><i class="icon-download"></i> Load more</a>
       </td>
     </tr>
@@ -45,7 +55,7 @@
 {else}
 {if $last == 0}
 <tr>
-  <td colspan="6">
+  <td colspan="7">
     No offers!!!
   </td>
 </tr>

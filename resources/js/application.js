@@ -1,6 +1,5 @@
 $(document).ready(function(){
-  $('.datepicker').datepicker();
-  
+  $("#busy-loader").spin("large");
   $("input.currency").maskMoney({
     thousands: ',',
     decimal: '.',
@@ -30,4 +29,31 @@ $(document).ready(function(){
       $nav.removeClass('subnav-fixed')
     }
   }
-})
+});
+
+$.ajaxSetup({
+  beforeSend:function(){
+//    alert('starting');
+    $("#busy").height($(document).height());
+    $("#busy").show();
+  },
+  complete:function(){
+//    alert('stop');
+    $("#busy").hide();
+  }
+});
+//$.ajaxSetup({
+//  beforeSend:function(){
+//    $(".ajaxLoader").show();
+//  },
+//  complete:function(){
+//    $(".ajaxLoader").hide();
+//  }
+//});
+//$(document).ajaxStart(function(){
+//  //  console.log('start');
+//  $('#busy').activity();
+//}).ajaxStop(function(){ 
+//  //  console.log('stop');
+//  $('#busy').activity(false);
+//});

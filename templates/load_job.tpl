@@ -10,7 +10,7 @@
     {if $jobs->count_total_applicants > 0}
     <span class="label label-success">{$jobs->count_total_applicants}</span>
     {else}
-    <span class="label">{$jobs->count_total_applicants}</span>
+    <span class="label">{$jobs->num_active_candidates}</span>
     {/if}
   </td>
   <td>
@@ -24,8 +24,8 @@
   </td>
   <td>
     <div class="btn-group">
-      <a class="btn" href="{$jobs->public_url}" target="_blank" title="View job online"><i class="icon-search"></i> online</a>
-        <a class="btn btn-primary" href="./?action=offers&job={$jobs->reference}" title="View job's offers"><i class="icon-search"></i> offers</a>
+      <a class="btn btn-mini" href="{$jobs->public_url}" target="_blank" title="View job online"><i class="icon-search"></i> online</a>
+        <a class="btn btn-mini btn-primary" href="./?action=offers&job={$jobs->reference}" title="View job's offers"><i class="icon-search"></i> offers</a>
     </div>
   </td>
 </tr>

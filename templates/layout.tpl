@@ -12,7 +12,9 @@
     <!--[if lt IE 8]><link rel="stylesheet" type="text/css" media="screen" href="resources/css/font-awesome-ie7.css" /><![endif]-->
     <link rel="stylesheet" type="text/css" media="all" href="resources/css/bootstrap-datepicker.css">
     <link rel="stylesheet" type="text/css" media="all" href="resources/css/main.css">
+    <script type="text/javascript" src="resources/js/spin.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.spin.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery.maskMoney.js"></script>
     <script type="text/javascript" src="resources/js/jquery.chained.js"></script>
@@ -20,6 +22,11 @@
     <script type="text/javascript" src="resources/js/application.js"></script>
   </head>
   <body>
+    <div id="busy">
+      <div id="busy-loader"></div>
+      <div id="busy-msg">Please wait</div>
+    </div>
+<!--    <img id="imgAjaxLoader" class="ajaxLoader" src="resources/images/loading.gif" />-->
     <!-- NAVBAR -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
