@@ -16,9 +16,9 @@
     <script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery.spin.js"></script>
     <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="resources/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="resources/js/jquery.maskMoney.js"></script>
     <script type="text/javascript" src="resources/js/jquery.chained.js"></script>
-    <script type="text/javascript" src="resources/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="resources/js/application.js"></script>
   </head>
   <body>

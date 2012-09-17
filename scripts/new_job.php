@@ -78,6 +78,6 @@ $categories = $data->categories;
 $smarty->assign('categories', $categories);
 
 //date fields initialization
-$smarty->assign('todayte', date('d-m-Y', time()));
+$smarty->assign('todayte', date('m-d-Y', time()));
 
 $content = $smarty->fetch('new_job.tpl');

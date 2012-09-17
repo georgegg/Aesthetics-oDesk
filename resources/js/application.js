@@ -1,5 +1,9 @@
 $(document).ready(function(){
+  
   $("#busy-loader").spin("large");
+  
+  $('.datepicker').datepicker();
+  
   $("input.currency").maskMoney({
     thousands: ',',
     decimal: '.',
@@ -8,7 +12,6 @@ $(document).ready(function(){
   
   $("#subcategory").chained("#category");  
   
-  // fix sub nav on scroll
   var $win = $(window)
   , $nav = $('.subnav')
   , navHeight = $('.navbar').first().height()
@@ -29,31 +32,15 @@ $(document).ready(function(){
       $nav.removeClass('subnav-fixed')
     }
   }
+  
 });
 
 $.ajaxSetup({
   beforeSend:function(){
-//    alert('starting');
     $("#busy").height($(document).height());
     $("#busy").show();
   },
   complete:function(){
-//    alert('stop');
     $("#busy").hide();
   }
 });
-//$.ajaxSetup({
-//  beforeSend:function(){
-//    $(".ajaxLoader").show();
-//  },
-//  complete:function(){
-//    $(".ajaxLoader").hide();
-//  }
-//});
-//$(document).ajaxStart(function(){
-//  //  console.log('start');
-//  $('#busy').activity();
-//}).ajaxStop(function(){ 
-//  //  console.log('stop');
-//  $('#busy').activity(false);
-//});

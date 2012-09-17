@@ -85,7 +85,7 @@
           <label class="control-label" for="start_date">Start date</label>          
           <div class="controls">
             <div class="input-append date datepicker" data-date="{if $values.start_date}{$values.start_date}{else}{$todayte}{/if}" data-date-format="mm-dd-yyyy">
-              <input name="start_date" id="start_date" class="span9" size="16" type="text" value="{if $values.start_date}{$values.start_date}{/if}"><span class="add-on"><i class="icon-th"></i></span></div>
+              <input name="start_date" id="start_date" class="span9" size="16" type="text" value="{if $values.start_date}{$values.start_date}{/if}"><span class="add-on"><i class="icon-calendar"></i></span></div>
             {if $errors['start_date']}<span class="help-inline">{$errors['start_date']}</span>{/if}
             <span class="help-block"><i class="icon-question-sign"></i> The start date of the Job, e.g. 06-15-2011. If start date is not included the job will default to starting immediately.</span>
           </div>
@@ -94,7 +94,7 @@
           <label class="control-label" for="end_date"><sup style="color: red;"><i class="icon-asterisk"></i></sup> End date</label>          
           <div class="controls">
             <div class="input-append date datepicker" data-date="{if $values.end_date}{$values.end_date}{else}{$todayte}{/if}" data-date-format="mm-dd-yyyy">
-              <input name="end_date" id="end_date" class="span9" size="16" type="text" value="{if $values.end_date}{$values.end_date}{/if}" ><span class="add-on"><i class="icon-th"></i></span></div>
+              <input name="end_date" id="end_date" class="span9" size="16" type="text" value="{if $values.end_date}{$values.end_date}{/if}" ><span class="add-on"><i class="icon-calendar"></i></span></div>
             {if $errors['end_date']}<span class="help-inline">{$errors['end_date']}</span>{/if}
             <span class="help-block"><i class="icon-question-sign"></i> The end date of the Job, e.g. 06-15-2011.</span>
           </div>
