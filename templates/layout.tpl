@@ -21,7 +21,7 @@
     <script type="text/javascript" src="resources/js/jquery.chained.js"></script>
     <script type="text/javascript" src="resources/js/application.js"></script>
   </head>
-  <body>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
     <div id="busy">
       <div id="busy-loader"></div>
       <div id="busy-msg">Please wait</div>
@@ -50,12 +50,12 @@
                   <li class="{if $active=='new_job'}active{/if}"><a href="./?action=new_job"><i class="icon-plus"></i> Add new</a></li>
                 </ul>
               </li>
-              <li class="{if $active=='offers'}active{/if}"><a href="./?action=offers"><i class="icon-user"></i> Offers</a></li>
+              <li class="{if $active=='offers'}active{/if}"><a href="./?action=offers"><i class="icon-user"></i> Offers </a></li>
               <li class="{if $active=='contracts'}active{/if}"><a href="./?action=contracts"><i class="icon-certificate"></i> Contracts</a></li>
               {/if}
             </ul>
             <ul class="nav pull-right">
-              <li><a href="#"><i class="icon-question-sign"></i> Help</a></li>
+              <li class="{if $active=='help'}active{/if}"><a href="./?action=help"><i class="icon-question-sign"></i> Help</a></li>
               {if $is_authed}
               <li><a href="./?action=logout"><i class="icon-signout"></i> Sign out app</a></li>
               {else}
