@@ -5,7 +5,7 @@
 <div class="subnav">
   <ul class="nav nav-pills">
     <li class=""><a class="" href="./?action=new_job"><i class="icon-plus"></i> Post new</a></li>
-    <li class=""><a class="" href="./?action=jobs&status={$status}"><i class="icon-refresh"></i> Refresh jobs</a></li>
+    <li class=""><a class="" href="./?action=jobs&status={$status}"><i class="icon-repeat"></i> Refresh jobs</a></li>
   </ul>
 </div>
 </header>

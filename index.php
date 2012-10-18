@@ -8,10 +8,11 @@ require 'lib/application.php';
 
 $action = isset($_REQUEST['action']) ? strtolower($_REQUEST['action']) : 'index';
 $is_authed = false;
+$application = new Application();
 
 try {
   // create API's library object'
-  $api = new oDeskAPI(OD_SECRET, OD_API_KEY);
+  $api = $application->getApi();
 } catch (Exception $e) {
   echo '<pre>Error: ' . $e->getMessage() . '</pre>';
 }
@@ -19,6 +20,7 @@ if ($action != 'error') {
   if (!isset($_SESSION['odesk_api_token'])) {
     $token = $api->auth(); // auth using your login and pass to authorize app
     $_SESSION['odesk_api_token'] = $token; // save your token using prefered method
+    
     $check = Application::checkUser();
     if (!$check) {
       header("Location: ./?action=error");

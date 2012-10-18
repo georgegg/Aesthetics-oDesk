@@ -12,13 +12,13 @@ $jobs = $jobs_data->jobs->job;
 //echo '</code>';
 //die();
 $smarty->assign('total', $total);
-$smarty->assign('jobs', $jobs);
 $smarty->assign('last', $last);
 
 if (is_array($jobs)){
-  $content = $smarty->fetch('load_jobs.tpl');
+  $smarty->assign('jobs', $jobs);
 } else {
-  $content = $smarty->fetch('load_job.tpl');
+  $smarty->assign('jobs', array($jobs));
 }
+$content = $smarty->fetch('load_jobs.tpl');
 
 die($content);

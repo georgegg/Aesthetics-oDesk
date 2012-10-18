@@ -1,5 +1,10 @@
 <div class="page-header">
   <h1>Offers <small>{if $job}[Job: #{$job->reference}: {$job->title}]{else}[All Jobs]{/if}</small></h1>
+  <div class="subnav">
+  <ul class="nav nav-pills">
+    <li class=""><a class="" href="./?action=offers{if $job}&job={$job->reference}{/if}"><i class="icon-repeat"></i> Refresh offers</a></li>
+  </ul>
+</div>
 </div>
 
 <div class="row-fluid">

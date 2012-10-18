@@ -32,12 +32,12 @@ if (is_array($offers)){
 $smarty->assign('total', $total);
 $smarty->assign('job', $job);
 $smarty->assign('last', $last);
-$smarty->assign('offers', $offers);
 
 if (is_array($offers)){
-  $content = $smarty->fetch('load_offers.tpl');
+  $smarty->assign('offers', $offers);
 } else {
-  $content = $smarty->fetch('load_offer.tpl');
+  $smarty->assign('offers', array($offers));
 }
+$content = $smarty->fetch('load_offers.tpl');
 
 die($content);

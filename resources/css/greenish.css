@@ -1225,7 +1225,7 @@ select:focus:required:invalid:focus {
 .input-prepend .add-on {
   display: inline-block;
   width: auto;
-  height: 18px;
+  height: 20px;
   min-width: 16px;
   padding: 4px 5px;
   font-size: 14px;

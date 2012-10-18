@@ -121,7 +121,7 @@
     <div class="well">
       <h2><i class="icon-question-sign"></i> Help</h2>
       <p>Fill in the form to post a new "Fixed Price" Job on oDesk platform under <strong>{$smarty.const.OD_COMPANY}</strong> account.</p>
-      <p><sup>1</sup>: <strong>Advance options</strong> are available <u>only in oDesk site application</u>. If you wish to farther edit your job post, edit after posting in oDesk site.</p>
+      <p><sup>1</sup>: Via this form you can post a job under your account in oDesk. <strong>Advance options</strong> are available <u>only in oDesk site application</u>. If you wish to further edit your job, visit the job post in oDesk site after posting through this form.</p>
       <p><sup style="color: red;"><i class="icon-asterisk"></i></sup> : Required field.</p>
     </div>
   </div>

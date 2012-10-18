@@ -5,7 +5,7 @@
     <meta name="title" content="CMDB for AM team">
     <title>Aesthetics oDesk App</title>
 
-    <link rel="stylesheet" type="text/css" media="all" href="resources/css/bootstrap.min.noicons.css">
+    <link rel="stylesheet" type="text/css" media="all" href="resources/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="resources/css/greenish.css">
     <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" type="text/css" media="all" href="resources/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="resources/css/font-awesome.css">
@@ -57,9 +57,9 @@
             <ul class="nav pull-right">
               <li class="{if $active=='help'}active{/if}"><a href="./?action=help"><i class="icon-question-sign"></i> Help</a></li>
               {if $is_authed}
-              <li><a href="./?action=logout"><i class="icon-signout"></i> Sign out app</a></li>
+              <li><a href="./?action=logout&od=1"><i class="icon-signout"></i> Sign out</a></li>
               {else}
-              <li><a href="https://www.odesk.com/login.php?action=logout"><i class="icon-signout"></i> Sign out from oDesk</a></li>
+              <li><a href="./?action=logout&od=1"><i class="icon-signout"></i> Sign out</a></li>
               {/if}
             </ul>
           </div>
