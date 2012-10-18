@@ -39,6 +39,6 @@ It only provides total of requested <u>offset;count</u>. Thus only fragmented / 
 
 -- Online job posting accept budget of 5 usd minimum (for fixed price jobs), while through the API less budget can be accepted?!
 
--- Message center: when sending messages via API messages appear well in oDesk site but for some reason they are delivered with new lines ("\n") replaced by breaks (<br />).
+-- Message center: when sending messages via API messages appear well in oDesk site but for some reason they are delivered with new lines ("\n") replaced by breaks (br).
 
 <b>more coming ... </b> 
