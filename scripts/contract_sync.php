@@ -13,7 +13,7 @@ if ($errors) {
   $data['success'] = false;
   $data['errors'] = $errors;
 } else {
-  $sync = Application::syncContract($_REQUEST['engagement'], $_REQUEST['contractor']);
+  $sync = $application->syncContract($_REQUEST['engagement'], $_REQUEST['contractor']);
   
   if (!$sync){
     $data['success'] = false;

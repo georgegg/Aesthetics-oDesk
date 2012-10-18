@@ -59,7 +59,7 @@ if ($_POST['submit']) {
     $smarty->assign('values', $_POST);
   } else {
     //POST THE JOB!!!
-    $job = Application::postJob($_POST);
+    $job = $application->postJob($_POST);
     //if ok
     if ($job->job){
       $smarty->assign('message', array('type'=> 'success', 'body'=>'Job created successfully with ref: '. $job->job->reference));

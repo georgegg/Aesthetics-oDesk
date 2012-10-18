@@ -4,7 +4,7 @@ $last = $_REQUEST['last'] ? $_REQUEST['last'] : 0;
 $status = $_REQUEST['status'] ? (string) $_REQUEST['status'] : 'active';
 $job = $_REQUEST['job'] ? $_REQUEST['job'] : null;
 
-$eng_data = Application::getEngagements($last, $status, $job);
+$eng_data = $application->getEngagements($last, $status, $job);
 
 $total = $eng_data->engagements->lister->total_count;
 $engagements = $eng_data->engagements->engagement;
@@ -14,12 +14,12 @@ $engagements = $eng_data->engagements->engagement;
 $smarty->assign('total', $total);
 $smarty->assign('job', $job);
 $smarty->assign('last', $last);
-$smarty->assign('team_ref', Application::getCompany());
+$smarty->assign('team_ref', $application->getCompany());
 
 if (is_array($engagements)){
-  $smarty->assign('engagements',  Application::getEngagementsLocalStatus($engagements));
+  $smarty->assign('engagements',  $application->getEngagementsLocalStatus($engagements));
 } else {
-  $smarty->assign('engagements',  Application::getEngagementsLocalStatus(array($engagements)));
+  $smarty->assign('engagements',  $application->getEngagementsLocalStatus(array($engagements)));
 }
 $content = $smarty->fetch('load_engagements.tpl');
 

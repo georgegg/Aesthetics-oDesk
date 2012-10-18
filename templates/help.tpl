@@ -1,18 +1,19 @@
 <div class="page-header">
   <h1><i class="icon-question-sign"></i> Help<small></small></h1>
 </div>
-
+<header class="jumbotron subhead" id="overview">
+<div class="subnav">
+  <ul class="nav nav-pills">
+    <li class=""><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
+    <li class=""><a href="#jobs"><i class="icon-chevron-right"></i> Jobs</a></li>
+    <li><a href="#offers"><i class="icon-chevron-right"></i> Offers</a></li>
+    <li><a href="#engagements"><i class="icon-chevron-right"></i> Engagements</a></li>
+    <li><a href="#contracts"><i class="icon-chevron-right"></i> Contracts</a></li>
+  </ul>
+</div>
+</header>
 <div class="row-fluid">
-  <div class="span3">
-    <ul class="nav nav-list bs-docs-sidenav affix">
-      <li class=""><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
-      <li class=""><a href="#jobs"><i class="icon-chevron-right"></i> Jobs</a></li>
-      <li><a href="#offers"><i class="icon-chevron-right"></i> Offers</a></li>
-      <li><a href="#engagements"><i class="icon-chevron-right"></i> Engagements</a></li>
-      <li><a href="#contracts"><i class="icon-chevron-right"></i> Contracts</a></li>
-    </ul>
-  </div>
-  <div class="span9">
+  <div class="span12">
     <section id="overview">
       <div class="page-header">
         <h1>Overview</h1>

@@ -3,7 +3,7 @@
 $last = $_REQUEST['last'] ? $_REQUEST['last'] : 0;
 $status = $_REQUEST['status'] ? (string) $_REQUEST['status'] : 'open';
 
-$jobs_data = Application::getJobs($last, $status);
+$jobs_data = $application->getJobs($last, $status);
 
 $total = $jobs_data->jobs->lister->total_items;
 $jobs = $jobs_data->jobs->job;

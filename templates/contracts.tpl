@@ -69,6 +69,7 @@ job = {$job->reference};
 {literal}
 <script>
   $(document).ready(function(){
+    
     function getErrors(errors){
       $.ajax({
         type: 'GET',

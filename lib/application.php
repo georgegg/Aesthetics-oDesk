@@ -141,7 +141,7 @@ class Application
     } catch (Exception $exc) {
       throw new Exception($exc->getMessage());
     }
-    
+
     foreach ($engagements as $engagement) {
       if (array_key_exists($engagement->reference, $data)) {
         $engagement->synced = $data[$engagement->reference];
@@ -149,7 +149,7 @@ class Application
         $engagement->synced = false;
       }
     }
-    
+
     return $engagements;
   }
 

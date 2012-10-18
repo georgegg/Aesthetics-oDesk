@@ -25,7 +25,7 @@ if ($errors) {
   $data['errors'] = $errors;
 } else {
   //POST THE JOB!!!
-  $message = Application::sendMessage($_POST['recipients'], $_POST['subject'], $_POST['body']);
+  $message = $application->sendMessage($_POST['recipients'], $_POST['subject'], $_POST['body']);
   
   if (!$message->thread_id){
     $data['success'] = false;

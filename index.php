@@ -4,10 +4,12 @@ error_reporting(E_ALL ^ E_NOTICE);
 require 'lib/oDeskAPI.lib.php';
 require 'config/config.php';
 require('lib/smarty/Smarty.class.php');
+require 'lib/helper.php';
 require 'lib/application.php';
 
 $action = isset($_REQUEST['action']) ? strtolower($_REQUEST['action']) : 'index';
 $is_authed = false;
+$helper = new Helper();
 $application = new Application();
 
 try {
@@ -23,7 +25,7 @@ if ($action != 'error') {
     
     $check = Application::checkUser();
     if (!$check) {
-      header("Location: ./?action=error");
+      header("Location: ./?action=error&code=401");
     } else {
       $is_authed = true;
     }
@@ -44,6 +46,8 @@ $content = '';
 $script = $base . '/scripts/' . $action . '.php';
 if (file_exists($script)) {
   require $script;
+} else {
+  header("Location: ./?action=error");
 }
 $smarty->assign('active', $action);
 $smarty->assign('is_authed', $is_authed);
