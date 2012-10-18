@@ -26,7 +26,7 @@
       <span class="label {if $engagement->status == 'active'}label-success{/if} {if $engagement->status == 'closed'}label-important{/if}">{$engagement->status}</span>
     </td>
     <td>
-      {if $engagement->synced}Yes <a href="#" rel="popover" title="Synchronized" data-html="true" data-content="salt: {$engagement->synced} <a class='btn btn-small btn-warning' href='#' title='Send payment info message' data-toggle='modal' data-backdrop='false' data-remote='./index.php?action=message_new&rec={$engagement->provider__id}&salt={$engagement->synced}&sub=Payment%20Info' data-target='#myModal'>Send</a>"><i class="icon-info-sign"></i></a>{/if}
+      {if $engagement->synced}Yes <a href="#" rel="popover" title="Synchronized" data-trigger="click" data-html="true" data-content="salt: {$engagement->synced} <a class='btn btn-small btn-warning' href='#' title='Send payment info message' data-toggle='modal' data-backdrop='false' data-remote='./index.php?action=message_new&rec={$engagement->provider__id}&salt={$engagement->synced}&sub=Payment%20Info' data-target='#myModal'>Send</a>"><i class="icon-info-sign"></i></a>{/if}
     </td>
     <td>
       <div class="btn-group">
@@ -36,9 +36,9 @@
     </td>
   </tr>
   {/foreach}
-  {if $total >= 9}
+  {if $total >= 10}
     <tr>
-      <td colspan="9">
+      <td colspan="10">
         <a id="showmore-engagements" class="btn btn-primary" href="#" rel="{$last+$total}"><i class="icon-download"></i> Load more</a>
       </td>
     </tr>
@@ -46,7 +46,7 @@
 {else}
 {if $last == 0}
 <tr>
-  <td colspan="9">
+  <td colspan="10">
     No contracts!!!
   </td>
 </tr>

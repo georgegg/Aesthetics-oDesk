@@ -7,11 +7,13 @@ $job = $_REQUEST['job'] ? $_REQUEST['job'] : null;
 $eng_data = $application->getEngagements($last, $status, $job);
 
 $total = $eng_data->engagements->lister->total_count;
+$total_i = $eng_data->engagements->lister->total_items;
 $engagements = $eng_data->engagements->engagement;
 //var_dump($engagements);
 //die();
 //assign values
 $smarty->assign('total', $total);
+$smarty->assign('total_i', $total_i);
 $smarty->assign('job', $job);
 $smarty->assign('last', $last);
 $smarty->assign('team_ref', $application->getCompany());
