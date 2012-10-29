@@ -2,12 +2,12 @@
   <h1>Jobs <small>List</small></h1>
 </div>
 <header class="jumbotron subhead" id="overview">
-<div class="subnav">
-  <ul class="nav nav-pills">
-    <li class=""><a class="" href="./?action=new_job"><i class="icon-plus"></i> Post new</a></li>
-    <li class=""><a class="" href="./?action=jobs&status={$status}"><i class="icon-repeat"></i> Refresh jobs</a></li>
-  </ul>
-</div>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <li class=""><a class="" href="./?action=new_job"><i class="icon-plus"></i> Post new</a></li>
+      <li class=""><a class="" href="./?action=jobs&status={$status}"><i class="icon-repeat"></i> Refresh jobs</a></li>
+    </ul>
+  </div>
 </header>
 <div class="row-fluid">
   <div class="span9">
@@ -41,7 +41,7 @@
 </div>
 
 <script>
-var _status = '{$status}';
+  var _status = '{$status}';
 </script>
 
 {literal}
@@ -59,7 +59,70 @@ var _status = '{$status}';
         $("a#showmore-jobs").click(function(e){
           e.preventDefault();
           doLoadJobs($(this).attr('rel'));
-        })
+        });
+        $("a.cncl_j").not('.disabled').click(function(e){
+          e.preventDefault();
+          $el = $(this);
+          $.ajax({
+            type: 'GET',
+            dataType: 'HTML',
+            url: $el.attr('data-remote')
+          }).done(function(responce){
+            bootbox.dialog(responce, [
+              {
+                "label" : "Cancel job",
+                "class" : "btn-danger",
+                "callback": function() {
+                  var $form = jQuery('.bootbox').find('form');
+                  var $modal = $('.bootbox');
+                  $modal.hide();
+                  bootbox.dialog('<strong>Confirm?</strong><br/>Are you sure? You cannot open the job again once it is canceled!',
+                  [{
+                      "No": function() {
+                        $modal.show();
+                      }
+                  
+                    },{
+                      "Yes": function() {
+                        $modal.show();
+                        $form.ajaxSubmit({
+                          dataType: 'json',
+                          success: function(responseText, statusText, xhr, $form){
+                            if (!responseText.success){
+                              $('#errors').empty();
+                              responseText.message ? $('#errors').append(responseText.message) : $('#errors').append(responseText);
+                            } else {
+                              bootbox.hideAll();
+                              bootbox.alert(responseText.message, function(){
+                                location.reload()
+                              });
+                            }
+                          }
+                        });
+                      }
+                    }], 
+                  {
+                    "backdrop": false
+                  }
+                );
+                  return false;
+                }
+              }, 
+              {
+                "label" : "Return",
+                "callback": function() {
+
+                }
+
+              }], 
+            {
+              "header": $el.attr('title'),
+              "backdrop" : "static",
+              "keyboard" : false,
+              "show"     : true
+            });
+          });
+        });
       });
     }
 

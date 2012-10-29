@@ -27,6 +27,7 @@
       <div class="btn-group">
         <a class="btn btn-mini" href="{$job->public_url}" target="_blank" title="View job online"><i class="icon-search"></i> online</a>
         <a class="btn btn-mini btn-primary" href="./?action=offers&job={$job->reference}" title="View job's offers"><i class="icon-search"></i> offers</a>
+        {if $job->status == 'open'}<a class="btn btn-mini btn-danger cncl_j" title="Cancel job" data-remote="./index.php?action=job_cancel&id={$job->reference}"><i class="icon-remove"></i></a>{/if}
       </div>
     </td>
   </tr>
