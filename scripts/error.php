@@ -4,4 +4,7 @@ if($_REQUEST['code'] && $_REQUEST['code'] == 401){
 } else {
   $smarty->assign('message', array('type'=> 'error', 'body'=>'<h4>404</h4>The page you requested cannot be found!!!'));
 }
-$content = '';
+if($helper->isXmlHttpRequest()) {
+  $content = $smarty->fetch('error.tpl');
+  die($content);
+}
