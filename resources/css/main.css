@@ -18,7 +18,7 @@ body {
 div#busy {
   height: 100%;
   width: 100%;
-  background:#fff;
+  background:#28363d;
   filter: alpha(opacity=75); /* internet explorer */
   -khtml-opacity: 0.75;      /* khtml, old safari */
   -moz-opacity: 0.75;       /* mozilla, netscape */
@@ -26,6 +26,7 @@ div#busy {
   display: block;
   overflow: hidden;
   position: absolute;
+  color: #FFF;
   top: 0;
   z-index: 100000;
   display: none;
@@ -44,6 +45,7 @@ div#busy-msg {
   margin-top: -24px;
   margin-left: -64px;
   font-weight: bold;
+  color: #FFF;
 }
 .dropdown-menu form a {
   clear: both;

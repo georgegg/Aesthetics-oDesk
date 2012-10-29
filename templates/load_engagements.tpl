@@ -26,12 +26,16 @@
       <span class="label {if $engagement->status == 'active'}label-success{/if} {if $engagement->status == 'closed'}label-important{/if}">{$engagement->status}</span>
     </td>
     <td>
-      {if $engagement->synced}Yes <a href="#" rel="popover" title="Synchronized" data-trigger="click" data-html="true" data-content="salt: {$engagement->synced} <a class='btn btn-small btn-warning' href='#' title='Send payment info message' data-toggle='modal' data-backdrop='false' data-remote='./index.php?action=message_new&rec={$engagement->provider__id}&salt={$engagement->synced}&sub=Payment%20Info' data-target='#myModal'>Send</a>"><i class="icon-info-sign"></i></a>{/if}
+      {if $engagement->synced}Yes <a href="#" rel="tooltip" title="Synchronized!! (salt: {$engagement->synced})"><i class="icon-info-sign"></i></a>{/if}
     </td>
     <td>
       <div class="btn-group">
-        <a class="btn btn-mini btn-warning" title="Send contractor a message" data-toggle="modal" data-backdrop="false" data-remote="./index.php?action=message_new&rec={$engagement->provider__id}" data-target="#myModal"><i class="icon-envelope"></i></a>
-        <a class="btn btn-mini btn-danger sync {if $engagement->synced}disabled{/if}" href="#" rel="&engagement={$engagement->reference}&contractor={$engagement->provider__id}" title="Synchronize contract"><i class="icon-refresh"></i></a>
+        <a class="btn btn-mini info_c" title="Info" data-remote="./index.php?action=contract&id={$engagement->reference}"><i class="icon-eye-open"></i></a>
+        <a class="btn btn-mini btn-success s_message" title="Send message" data-remote="./index.php?action=message_new&rec={$engagement->provider__id}"><i class="icon-envelope"></i></a>
+        <a class="btn btn-mini btn-primary p_message {if !$engagement->synced}disabled{/if} {if $engagement->status == 'closed'}disabled{/if}" title="Send payment info message" data-remote="./index.php?action=message_new&rec={$engagement->provider__id}&salt={$engagement->synced}&sub=Payment%20Info"><i class="icon-envelope"></i></a>
+        <a class="btn btn-mini sync {if $engagement->synced}disabled{/if}" href="#" rel="&engagement={$engagement->reference}&contractor={$engagement->provider__id}" title="Synchronize contract"><i class="icon-refresh"></i></a>
+        <a class="btn btn-mini btn-warning pay_c {if $engagement->status == 'closed'}disabled{/if}" title="Pay contractor" data-remote="./index.php?action=contract_pay&id={$engagement->reference}&amount={$engagement->fixed_charge_amount_agreed}"><i class="icon-money"></i></a>
+        <a class="btn btn-mini btn-danger cls_c {if $engagement->status == 'closed'}disabled{/if}" title="Close contract" data-remote="./index.php?action=contract_close&id={$engagement->reference}"><i class="icon-remove"></i></a>
       </div>
     </td>
   </tr>

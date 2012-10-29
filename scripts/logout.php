@@ -35,6 +35,7 @@ if ($_REQUEST['od'] == 1) {
   //close connection
   curl_close($ch);
 }
-
+session_start();
+session_destroy();
 
 header("Location: ./?action=index");

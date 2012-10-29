@@ -3,9 +3,9 @@
 class Application
 {
 
-  static $api = null;
-  static $company = null;
-  static $user = null;
+  static private $api = null;
+  static private $company = null;
+  static private $user = null;
 
   public function __construct()
   {
@@ -105,6 +105,24 @@ class Application
     return $offers;
   }
 
+  static function payContract($params = array())
+  {
+    $pay = self::getApi()->post_request('https://www.odesk.com/api/hr/v2/teams/' . self::getCompany()->reference . '/adjustments.json', $params);
+    if (!$pay){
+      return FALSE;
+    }
+    return json_decode($pay);
+  }
+  
+  static function closeContract($contract_reference, $params = array())
+  {
+    $close = self::getApi()->delete_request('https://www.odesk.com/api/hr/v2/contracts/' . $contract_reference . '.json', $params);
+    if (!$close){
+      return FALSE;
+    }
+    return json_decode($close);
+  }
+  
   static function syncContract($engagement, $contractor)
   {
     $obj = self::getEngagement($engagement);
@@ -112,11 +130,15 @@ class Application
     if (!$obj) {
       return false;
     }
-    $salt = md5($engagement . 'mYs@lT4Cont' . $contractor);
+    $salt = md5($engagement . SECRET_PASS . $contractor);
 
     try {
       self::doConnect();
-      $query = sprintf("INSERT INTO od_contracts (engagement_id, contractor_id, is_payed, salt, engagement) VALUES ('%s', '%s', '%s', '%s', '%s')", mysql_real_escape_string($engagement), mysql_real_escape_string($contractor), 'n', mysql_real_escape_string($salt), mysql_real_escape_string(serialize($obj))
+      $query = sprintf("INSERT INTO od_contracts (engagement_id, contractor_id, salt, engagement) VALUES ('%s', '%s', '%s', '%s')", 
+        mysql_real_escape_string($engagement), 
+        mysql_real_escape_string($contractor), 
+        mysql_real_escape_string($salt), 
+        mysql_real_escape_string(serialize($obj))
       );
       $result = mysql_query($query);
       self::doClose();
@@ -174,7 +196,11 @@ class Application
     }
     $params['page'] = $last;
     $params['order_by'] = 'created_time;DESC';
-    $params['status'] = $status != all ? $status : '';
+    if($status != 'all'){
+      $params['status'] = $status;
+    } else {
+      $params['status'] = 'active;closed';
+    }
 
     $eng_data = self::getApi()->get_request('https://www.odesk.com/api/hr/v2/engagements.json', $params);
 
@@ -202,6 +228,16 @@ class Application
     return $data->job;
   }
 
+  static function cancelJob($job, $params = array())
+  {
+    if (!$job) {
+      return false;
+    }
+
+    $jresponse = self::getApi()->delete_request('https://www.odesk.com/api/hr/v2/jobs/' . $job . '.json', $params);
+    return json_decode($jresponse);
+  }
+  
   static function postJob($params = array())
   {
     if (empty($params)) {
