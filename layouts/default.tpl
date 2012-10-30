@@ -29,7 +29,6 @@
       <div id="busy-loader"></div>
       <div id="busy-msg">Please wait</div>
     </div>
-<!--    <img id="imgAjaxLoader" class="ajaxLoader" src="resources/images/loading.gif" />-->
     <!-- NAVBAR -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -44,7 +43,6 @@
             <ul class="nav">
               {if $is_authed}
               <li class="{if !$active || $active=='index'}active{/if}"><a href="./?action=index"><i class="icon-home"></i> Home</a></li>
-<!--              <li class="{if $active==2}active{/if}"><a href="./?action=jobs"><i class="icon-tasks"></i> Jobs</a></li>-->
               <li class="dropdown {if $active=='jobs' || $active=='new_job'}active{/if}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-tasks"></i> Jobs <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -58,10 +56,9 @@
               {/if}
             </ul>
             <ul class="nav pull-right">
-              <li class="{if $active=='help'}active{/if}"><a href="./?action=help"><i class="icon-question-sign"></i> Help</a></li>
+              <li class="{if $active=='contact'}active{/if}"><a href="./?action=contact"><i class="icon-envelope-alt"></i> Contact</a></li>
               {if $is_authed}
-              <li><a href="./?action=logout&od=1"><i class="icon-signout"></i> Sign out</a></li>
-              {else}
+              <li class="{if $active=='help'}active{/if}"><a href="./?action=help"><i class="icon-question-sign"></i> Help</a></li>
               <li><a href="./?action=logout&od=1"><i class="icon-signout"></i> Sign out</a></li>
               {/if}
             </ul>
@@ -77,6 +74,12 @@
           <div class="alert alert-{$message['type']}">
             <button type="button" class="close" data-dismiss="alert" style="font-size: 15px;"><i class="icon-remove"></i></button>
             {$message['body']}
+            {if $message['type'] == 'error'}
+            <p>
+              <a class="btn" href="javascript:history.go(-1)"><i class="icon-chevron-left"></i> Go Back</a>
+              <a class="btn" href="./"><i class="icon-home"></i> Home</a>
+            </p>
+            {/if}
           </div>
           {/if}
           {$content}

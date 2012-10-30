@@ -2,29 +2,26 @@
 
 error_reporting(E_ALL ^ E_NOTICE);
 
-require 'lib/oDeskAPI.lib.php';
 require 'config/config.php';
 require('lib/smarty/Smarty.class.php');
 require 'lib/helper.php';
 require 'lib/application.php';
 
+session_start();
 $action = isset($_REQUEST['action']) ? strtolower($_REQUEST['action']) : 'index';
 $is_authed = false;
 $helper = new Helper();
 $application = new Application();
-
 try {
   $api = $application->getApi();
 } catch (Exception $e) {
   echo '<pre>Error: ' . $e->getMessage() . '</pre>';
 }
-if ($action != 'error' || $action != 'contract_complete') {
+if (!in_array($action, explode(';', NON_AUTH_ACTIONS))) {
   if (!isset($_SESSION['odesk_api_token'])) {
     $token = $api->auth();
     $check = Application::checkUser();
-    session_start();
     $_SESSION['odesk_api_token'] = $token;
-    session_write_close();
     if (!$check) {
       header("Location: ./?action=error&code=401");
     } else {
@@ -34,6 +31,8 @@ if ($action != 'error' || $action != 'contract_complete') {
     $api->option('api_token', $_SESSION['odesk_api_token']);
     $is_authed = true;
   }
+} else {
+  if (isset($_SESSION['odesk_api_token'])) {$is_authed = true;}
 }
 $base = realpath(dirname(__FILE__));
 $smarty = new Smarty();

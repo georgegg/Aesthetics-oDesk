@@ -58,7 +58,7 @@ final class oDeskAPI {
      * @return  boolean
      */
     public static function option($option, $value) {
-        $r = new ReflectionClass('\\'.__CLASS__);
+        $r = new ReflectionClass(__CLASS__);
         try {
             $r->getProperty($option);
             self::$$option = $value;

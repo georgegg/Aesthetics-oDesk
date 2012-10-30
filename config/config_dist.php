@@ -1,5 +1,9 @@
 <?php
 
+define('BASE_URL', '');
+define('BITLY_LOGIN', '');
+define('BITLY_APK', '');
+
 //DB Configuration
 define('DB_HOST', 'YOUR_DB_HOST');
 define('DB_PORT', 'YOUR_DB_PORT');

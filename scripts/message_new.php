@@ -18,7 +18,7 @@ Best regard,
 EOF
   ,
   $_REQUEST['rec'],
-  str_replace("\n", '', $helper->makeBitlyUrl(BASE_URL . '?action=complete&p=' . $_REQUEST['salt'], BITLY_LOGIN, BITLY_APK)),
+  str_replace("\n", '', $helper->makeBitlyUrl(BASE_URL . '?action=complete_contract&p=' . $_REQUEST['salt'], BITLY_LOGIN, BITLY_APK)),
   $application->getUser()->auth_user->uid
   );
 }

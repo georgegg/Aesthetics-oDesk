@@ -1,4 +1,5 @@
 <?php
+require 'oDeskAPI.lib.php';
 
 class Application
 {
@@ -9,7 +10,7 @@ class Application
 
   public function __construct()
   {
-    $this->setApi();
+    self::setApi();
   }
 
   static function doConnect()
@@ -105,24 +106,68 @@ class Application
     return $offers;
   }
 
+  static function requestCompleteContract($salt)
+  {
+    try {
+      self::doConnect();
+      $query = sprintf("UPDATE od_contracts SET requested_at = '%s' WHERE salt = '%s'", 
+        date('Y-m-d H:i:s', time()), 
+        mysql_real_escape_string($salt)
+      );
+      $result = mysql_query($query);
+      self::doClose();
+    } catch (Exception $exc) {
+      throw new Exception($exc->getMessage());
+      return false;
+    }
+    return true;
+  }
+
   static function payContract($params = array())
   {
     $pay = self::getApi()->post_request('https://www.odesk.com/api/hr/v2/teams/' . self::getCompany()->reference . '/adjustments.json', $params);
     if (!$pay){
       return FALSE;
+    } else {
+      try {
+        self::doConnect();
+        $query = sprintf("UPDATE od_contracts SET paid_amount = paid_amount+%f, paid_at = '%s' WHERE engagement_id = '%s'", 
+          mysql_real_escape_string($params['charge_amount']), 
+          date('Y-m-d H:i:s', time()), 
+          mysql_real_escape_string($params['engagement__reference'])
+        );
+        $result = mysql_query($query);
+        self::doClose();
+      } catch (Exception $exc) {
+        throw new Exception($exc->getMessage());
+      }
     }
     return json_decode($pay);
   }
-  
+
   static function closeContract($contract_reference, $params = array())
   {
+
     $close = self::getApi()->delete_request('https://www.odesk.com/api/hr/v2/contracts/' . $contract_reference . '.json', $params);
-    if (!$close){
+    if (!$close) {
       return FALSE;
+    } else {
+      try {
+        self::doConnect();
+        $query = sprintf("UPDATE od_contracts SET closed_at = '%s' WHERE engagement_id = '%s'", 
+          date('Y-m-d H:i:s', time()), 
+          mysql_real_escape_string($contract_reference)
+        );
+        $result = mysql_query($query);
+        self::doClose();
+      } catch (Exception $exc) {
+        throw new Exception($exc->getMessage());
+        return false;
+      }
     }
     return json_decode($close);
   }
-  
+
   static function syncContract($engagement, $contractor)
   {
     $obj = self::getEngagement($engagement);
@@ -154,10 +199,10 @@ class Application
     $data = array();
     try {
       self::doConnect();
-      $query = "SELECT engagement_id, salt FROM od_contracts";
+      $query = "SELECT engagement_id, salt, paid_at, requested_at, closed_at, synchronized_at FROM od_contracts";
       $result = mysql_query($query);
       while ($row = mysql_fetch_array($result)) {
-        $data[$row['engagement_id']] = $row['salt'];
+        $data[$row['engagement_id']] = $row;
       }
       self::doClose();
     } catch (Exception $exc) {
@@ -166,7 +211,11 @@ class Application
 
     foreach ($engagements as $engagement) {
       if (array_key_exists($engagement->reference, $data)) {
-        $engagement->synced = $data[$engagement->reference];
+        $engagement->synced = $data[$engagement->reference]['salt'];
+        $engagement->paid_at = $data[$engagement->reference]['paid_at'];
+        $engagement->synchronized_at = $data[$engagement->reference]['synchronized_at'];
+        $engagement->requested_at = $data[$engagement->reference]['requested_at'];
+        $engagement->closed_at = $data[$engagement->reference]['closed_at'];
       } else {
         $engagement->synced = false;
       }
@@ -196,7 +245,7 @@ class Application
     }
     $params['page'] = $last;
     $params['order_by'] = 'created_time;DESC';
-    if($status != 'all'){
+    if ($status != 'all') {
       $params['status'] = $status;
     } else {
       $params['status'] = 'active;closed';
@@ -237,7 +286,7 @@ class Application
     $jresponse = self::getApi()->delete_request('https://www.odesk.com/api/hr/v2/jobs/' . $job . '.json', $params);
     return json_decode($jresponse);
   }
-  
+
   static function postJob($params = array())
   {
     if (empty($params)) {
